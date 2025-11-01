@@ -1,0 +1,25 @@
+sudo apt install -y software-properties-common
+sudo add-apt-repository -y ppa:deadsnakes/ppa
+sudo apt update
+sudo apt install -y python3.11 python3.11-venv python3.11-dev
+
+Projektordner anlegen und virtuelle Umgebung erstellen:
+
+mkdir -p ~/tf-project && cd ~/tf-project
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -V   # sollte Python 3.11.x anzeigen
+
+Pip/Build‑Tools aktualisieren:
+python -m pip install --upgrade pip setuptools wheel
+
+In deiner aktiven Umgebung (venv oder conda):
+# Zeige verfügbare TF-Versionen (optional, braucht pip>=23)
+pip index versions tensorflow
+
+# Installiere die aktuelle stabile TF-Version
+pip install tensorflow
+
+python -c "import tensorflow as tf; print('TF:', tf.__version__); print('Devices:', tf.config.list_physical_devices())"
+
+deactivate
